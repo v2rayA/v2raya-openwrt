@@ -1,0 +1,148 @@
+name: Build v2rayA feed
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    name: Build packages for ${{ matrix.arch }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: aarch64_cortex-a53
+            runtime_test: true
+          - arch: aarch64_cortex-a72
+            runtime_test: false
+          - arch: aarch64_generic
+            runtime_test: false
+          - arch: arm_arm1176jzf-s_vfp
+            runtime_test: false
+          - arch: arm_arm926ej-s
+            runtime_test: false
+          - arch: arm_cortex-a15_neon-vfpv4
+            runtime_test: true
+          - arch: arm_cortex-a5_vfpv4
+            runtime_test: false
+          - arch: arm_cortex-a7
+            runtime_test: false
+          - arch: arm_cortex-a7_neon-vfpv4
+            runtime_test: false
+          - arch: arm_cortex-a8_vfpv3
+            runtime_test: false
+          - arch: arm_cortex-a9
+            runtime_test: false
+          - arch: arm_cortex-a9_neon
+            runtime_test: false
+          - arch: arm_cortex-a9_vfpv3-d16
+            runtime_test: false
+          - arch: arm_fa526
+            runtime_test: false
+          - arch: arm_mpcore
+            runtime_test: false
+          - arch: arm_xscale
+            runtime_test: false
+          - arch: i386_pentium-mmx
+            runtime_test: true
+          - arch: i386_pentium4
+            runtime_test: false
+          - arch: mips64_octeonplus
+            runtime_test: false
+          - arch: mips_24kc
+            runtime_test: false
+          - arch: mips_4kec
+            runtime_test: false
+          - arch: mips_mips32
+            runtime_test: false
+          - arch: mipsel_24kc
+            runtime_test: false
+          - arch: mipsel_24kc_24kf
+            runtime_test: false
+          - arch: mipsel_74kc
+            runtime_test: false
+          - arch: mipsel_mips32
+            runtime_test: false
+          - arch: x86_64
+            runtime_test: true
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Build
+        uses: openwrt/gh-action-sdk@v3
+        env:
+          ARCH: ${{ matrix.arch }}
+          FEEDNAME: v2raya_ci
+          PACKAGES: ca-certificates v2fly-geodata v2ray-core xray-core v2raya
+
+      - name: Generate metadata
+        env:
+          BUILD_ARCH: ${{ matrix.arch }}
+          DEBIAN_FRONTEND: noninteractive
+          USIGN_KEY: ${{ secrets.USIGN_KEY }}
+        run: |
+          sudo -H apt -qq install signify-openbsd
+          sudo -H chown -R runner:runner bin
+          ./scripts/generate_index.sh
+
+      - name: Upload feed
+        uses: Pendect/action-rsyncer@2554a1e574cf229fb144f23ea5971dbdca8ae8e3
+        with:
+          flags: '-ahvHP'
+          options: '--exclude "*cache*"'
+          src: 'bin/packages/${{ matrix.arch }}/v2raya_ci/'
+          dest: '${{ secrets.OSDN_USER }}@storage.osdn.net:/storage/groups/v/v2/v2raya/openwrt/${{ matrix.arch }}/'
+        env:
+          DEPLOY_KEY: ${{ secrets.OSDN_KEY }}
+
+      - name: Move created packages to project dir
+        run: cp bin/packages/${{ matrix.arch }}/v2raya_ci/*.ipk . || true
+
+      - name: Store packages
+        uses: actions/upload-artifact@v2
+        if: github.event_name != 'release'
+        with:
+          name: ${{ matrix.arch }}-${{ github.sha }}-packages
+          path: "*.ipk"
+
+      - name: Release packages
+        uses: svenstaro/upload-release-action@v2
+        if: github.event_name == 'release'
+        with:
+          overwrite: true
+          repo_token: ${{ github.token }}
+          tag: ${{ github.ref }}
+          file: "*.ipk"
+          file_glob: true
+
+      - name: Store logs
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.arch }}-${{ github.sha }}-logs
+          path: logs/
+
+      - name: Remove logs
+        run: sudo rm -rf logs/ || true
+
+      - name: Register QEMU
+        if: ${{ matrix.runtime_test }}
+        run: |
+          sudo docker run --rm --privileged aptman/qus -s -- -p
+
+      - name: Build Docker container
+        if: ${{ matrix.runtime_test }}
+        run: |
+          docker build -t test-container --build-arg ARCH .github/workflows/
+        env:
+          ARCH: ${{ matrix.arch }}
+
+      - name: Test via Docker container
+        if: ${{ matrix.runtime_test }}
+        run: |
+          docker run --rm -v $GITHUB_WORKSPACE:/ci test-container
