@@ -7,13 +7,19 @@ opkg feed of v2rayA for OpenWrt users.
 1. Add v2rayA usign key
 
    ```sh
-   wget-ssl https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/v/v2/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
+   wget-ssl https://osdn.net/projects/v2raya/storage/openwrt/v2raya.pub  -O /etc/opkg/keys/94cc2a834fb0aa03
+
+   # Mirror
+   # wget-ssl https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/v/v2/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
    ```
 
 2. Import v2rayA feed
 
    ```sh
-   echo "src/gz v2raya https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/v/v2/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
+   echo "src/gz v2raya https://osdn.net/projects/v2raya/storage/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
+
+   # Mirror
+   # echo "src/gz v2raya https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/v/v2/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
    ```
 
 3. Update feeds
