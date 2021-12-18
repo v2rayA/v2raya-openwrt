@@ -95,7 +95,7 @@ jobs:
         uses: Pendect/action-rsyncer@2554a1e574cf229fb144f23ea5971dbdca8ae8e3
         with:
           flags: '-ahvHP'
-          options: '--exclude "*cache*"'
+          options: '--delete'
           src: 'bin/packages/${{ matrix.arch }}/v2raya_ci/'
           dest: '${{ secrets.OSDN_USER }}@storage.osdn.net:/storage/groups/v/v2/v2raya/openwrt/${{ matrix.arch }}/'
         env:
