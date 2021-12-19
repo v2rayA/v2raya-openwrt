@@ -55,6 +55,8 @@ define Package/v2raya/conffiles
 /etc/config/v2raya
 endef
 
+GO_PKG_TARGET_VARS:=$(filter-out CGO_ENABLED=%,$(GO_PKG_TARGET_VARS)) CGO_ENABLED=0
+
 define Build/Compile
 	( \
 		pushd $(PKG_BUILD_DIR)/../gui ; \
