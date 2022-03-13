@@ -1,0 +1,31 @@
+From 4a9347e0cc5effe67399931c804bcef1114d535f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E9=AB=98=E6=B8=90=E7=A6=BB?=
+ <zhangyibo.114514@bytedance.com>
+Date: Tue, 8 Feb 2022 17:52:56 +0800
+Subject: [PATCH] fix: resolving subscription for line-breaked base64 string
+ (#406)
+
+---
+ service/common/crypto.go | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/service/common/crypto.go b/service/common/crypto.go
+index b9e5173..4a067e8 100644
+--- a/service/common/crypto.go
++++ b/service/common/crypto.go
+@@ -44,10 +44,11 @@ func Base64StdDecode(s string) (string, error) {
+ 	return string(raw), err
+ }
+ 
+-// 封装base64.URLEncoding进行解码，加入了长度补全。当error时，返回输入和err
++// 封装base64.URLEncoding进行解码，加入了长度补全，换行删除。当error时，返回输入和err
+ func Base64URLDecode(s string) (string, error) {
+ 	s = strings.TrimSpace(s)
+ 	saver := s
++	s = strings.ReplaceAll(strings.ReplaceAll(s, "\n", ""), "\r", "")
+ 	if len(s)%4 > 0 {
+ 		s += strings.Repeat("=", 4-len(s)%4)
+ 	}
+-- 
+2.20.1
+
