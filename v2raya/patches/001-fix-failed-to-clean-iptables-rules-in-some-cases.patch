@@ -7,10 +7,10 @@ Subject: [PATCH] fix: failed to clean iptables rules in some cases
  service/core/v2ray/transparent.go | 13 ++++++-------
  1 file changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/service/core/v2ray/transparent.go b/service/core/v2ray/transparent.go
+diff --git a/core/v2ray/transparent.go b/core/v2ray/transparent.go
 index 5480660..07b01a0 100644
---- a/service/core/v2ray/transparent.go
-+++ b/service/core/v2ray/transparent.go
+--- a/core/v2ray/transparent.go
++++ b/core/v2ray/transparent.go
 @@ -12,12 +12,14 @@ import (
  )
  

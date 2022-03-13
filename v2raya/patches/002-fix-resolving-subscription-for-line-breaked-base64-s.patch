@@ -9,10 +9,10 @@ Subject: [PATCH] fix: resolving subscription for line-breaked base64 string
  service/common/crypto.go | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/service/common/crypto.go b/service/common/crypto.go
+diff --git a/common/crypto.go b/common/crypto.go
 index b9e5173..4a067e8 100644
---- a/service/common/crypto.go
-+++ b/service/common/crypto.go
+--- a/common/crypto.go
++++ b/common/crypto.go
 @@ -44,10 +44,11 @@ func Base64StdDecode(s string) (string, error) {
  	return string(raw), err
  }
