@@ -6,11 +6,13 @@ opkg feed of v2rayA for OpenWrt users.
 
 1. Add v2rayA usign key
 
+   > Make sure package `wget-ssl` is installed on your device
+
    ```sh
-   wget-ssl https://osdn.net/projects/v2raya/storage/openwrt/v2raya.pub  -O /etc/opkg/keys/94cc2a834fb0aa03
+   wget https://osdn.net/projects/v2raya/storage/openwrt/v2raya.pub  -O /etc/opkg/keys/94cc2a834fb0aa03
 
    # Mirror
-   # wget-ssl https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/v/v2/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
+   # wget https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/v/v2/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
    ```
 
 2. Import v2rayA feed
