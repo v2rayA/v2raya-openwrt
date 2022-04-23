@@ -1,67 +1,67 @@
 # v2raya-openwrt
 
-opkg feed of v2rayA for OpenWrt users.
+适用于 OpenWrt 用户的 opkg 软件源。
 
-[简体中文](README.zh-cn.md)
+[English](README.md)
 
-## How to install
+## 安装方法
 
-1. Add v2rayA usign key
+1. 导入 v2rayA 签名文件
 
-   > Make sure package `wget-ssl` is installed on your device
+   > 请确认软件包 `wget-ssl` 已经安装在您的设备上
 
    ```sh
    wget https://osdn.net/projects/v2raya/storage/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
 
-   # Mirror
+   # 国内镜像
    # wget https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/v/v2/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
    ```
 
-2. Import v2rayA feed
+2. 添加 v2rayA 软件源
 
    ```sh
    echo "src/gz v2raya https://osdn.net/projects/v2raya/storage/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
 
-   # Mirror
+   # 国内镜像
    # echo "src/gz v2raya https://mirrors.tuna.tsinghua.edu.cn/osdn/storage/g/v/v2/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
    ```
 
-3. Update feeds
+3. 更新软件源
 
    ```sh
    opkg update
    ```
 
-4. Install v2rayA and its dependencies
+4. 安装 v2rayA 及其依赖
 
    ```sh
    opkg install v2raya
 
-   # Choose a core you'd like to use, v2ray or Xray
-   # If you have both installed, the former is preferred by default
+   # 选择一个你喜欢的内核，v2ray 或 Xray
+   # 如果两个内核被同时安装，默认使用前者
    opkg install v2ray-core
    # opkg install xray-core
 
-   # Optional
+   # 可选
    # opkg install v2fly-geoip v2fly-geosite
    ```
 
-## How to use
+## 使用方法
 
-1. Setup v2rayA
+1. 配置 v2rayA
 
    ```sh
-   # For advanced usage, please see /etc/config/v2raya
+   # 详细配置请参见 /etc/config/v2raya
    uci set v2raya.config.enabled='1'
    uci commit v2raya
    ```
 
-2. Start v2rayA
+2. 启动 v2rayA
 
    ```sh
    /etc/init.d/v2raya start
    ```
 
-3. Visit v2rayA webUI and enjoy
+3. 访问 v2rayA webUI 面板并完成设置
 
    http://openwrt.lan:2017
