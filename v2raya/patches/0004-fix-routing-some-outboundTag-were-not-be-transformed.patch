@@ -8,10 +8,10 @@ Subject: [PATCH 4/4] fix(routing): some outboundTag were not be transformed to
  service/core/v2ray/v2rayTmpl.go | 15 ++++++++-------
  1 file changed, 8 insertions(+), 7 deletions(-)
 
-diff --git a/service/core/v2ray/v2rayTmpl.go b/service/core/v2ray/v2rayTmpl.go
+diff --git a/core/v2ray/v2rayTmpl.go b/core/v2ray/v2rayTmpl.go
 index 1bc6881..e6f4bb0 100644
---- a/service/core/v2ray/v2rayTmpl.go
-+++ b/service/core/v2ray/v2rayTmpl.go
+--- a/core/v2ray/v2rayTmpl.go
++++ b/core/v2ray/v2rayTmpl.go
 @@ -1539,19 +1539,12 @@ func NewTemplate(serverInfos []serverInfo, setting *configure.Setting) (t *Templ
  			return nil, err
  		}

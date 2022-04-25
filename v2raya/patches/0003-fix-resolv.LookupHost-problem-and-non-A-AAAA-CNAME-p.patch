@@ -9,10 +9,10 @@ Subject: [PATCH 3/4] fix: resolv.LookupHost problem and non-A/AAAA/CNAME
  service/core/v2ray/v2rayTmpl.go   | 5 +++--
  2 files changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/service/common/resolv/resolver.go b/service/common/resolv/resolver.go
+diff --git a/common/resolv/resolver.go b/common/resolv/resolver.go
 index 5cfaefc..5191a5e 100644
---- a/service/common/resolv/resolver.go
-+++ b/service/common/resolv/resolver.go
+--- a/common/resolv/resolver.go
++++ b/common/resolv/resolver.go
 @@ -26,7 +26,7 @@ func init() {
  	rand.Seed(time.Now().UnixNano())
  	dialer := net.Dialer{Timeout: 1000 * time.Millisecond}
@@ -22,10 +22,10 @@ index 5cfaefc..5191a5e 100644
  		StrictErrors: false,
  		Dial: func(ctx context.Context, network, address string) (net.Conn, error) {
  			server := dnsServers[rand.Intn(len(dnsServers))]
-diff --git a/service/core/v2ray/v2rayTmpl.go b/service/core/v2ray/v2rayTmpl.go
+diff --git a/core/v2ray/v2rayTmpl.go b/core/v2ray/v2rayTmpl.go
 index 92ecfbb..1bc6881 100644
---- a/service/core/v2ray/v2rayTmpl.go
-+++ b/service/core/v2ray/v2rayTmpl.go
+--- a/core/v2ray/v2rayTmpl.go
++++ b/core/v2ray/v2rayTmpl.go
 @@ -976,6 +976,8 @@ func (t *Template) appendDNSOutbound() {
  	t.Outbounds = append(t.Outbounds, coreObj.OutboundObject{
  		Tag:      "dns-out",
