@@ -1,0 +1,28 @@
+From 3c6825badcde779d454a2ae004585bfc8fc11ad9 Mon Sep 17 00:00:00 2001
+From: mzz2017 <mzz@tuta.io>
+Date: Sun, 24 Apr 2022 17:21:02 +0800
+Subject: [PATCH 2/4] fix: bad routing caused by commit 'add fallback DNS for
+ DNS inbound for non-A/AAAA/CNAME requests #188'
+
+---
+ service/core/v2ray/v2rayTmpl.go | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/service/core/v2ray/v2rayTmpl.go b/service/core/v2ray/v2rayTmpl.go
+index 41ba452..92ecfbb 100644
+--- a/service/core/v2ray/v2rayTmpl.go
++++ b/service/core/v2ray/v2rayTmpl.go
+@@ -1064,8 +1064,8 @@ func (t *Template) setInbound() error {
+ 				Settings: &coreObj.InboundSettings{
+ 					Network: "udp",
+ 					// Fallback DNS for non-A/AAAA/CNAME requests. https://github.com/v2rayA/v2rayA/issues/188
+-					Address: "208.67.220.220",
+-					Port:    5353,
++					Address: "119.29.29.29",
++					Port:    53,
+ 				},
+ 				Tag: "dns-in",
+ 			})
+-- 
+2.20.1
+

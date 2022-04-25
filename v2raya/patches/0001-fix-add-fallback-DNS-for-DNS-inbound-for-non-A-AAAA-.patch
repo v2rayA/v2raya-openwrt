@@ -1,0 +1,29 @@
+From ecbf915d4be8b9066955a21059519266bcca6b92 Mon Sep 17 00:00:00 2001
+From: mzz2017 <mzz@tuta.io>
+Date: Sun, 24 Apr 2022 16:49:46 +0800
+Subject: [PATCH 1/4] fix: add fallback DNS for DNS inbound for
+ non-A/AAAA/CNAME requests
+
+---
+ service/core/v2ray/v2rayTmpl.go | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/service/core/v2ray/v2rayTmpl.go b/service/core/v2ray/v2rayTmpl.go
+index 1c46b3a..41ba452 100644
+--- a/service/core/v2ray/v2rayTmpl.go
++++ b/service/core/v2ray/v2rayTmpl.go
+@@ -1063,8 +1063,9 @@ func (t *Template) setInbound() error {
+ 				Listen:   "0.0.0.0",
+ 				Settings: &coreObj.InboundSettings{
+ 					Network: "udp",
+-					Address: "2.0.1.7",
+-					Port:    53,
++					// Fallback DNS for non-A/AAAA/CNAME requests. https://github.com/v2rayA/v2rayA/issues/188
++					Address: "208.67.220.220",
++					Port:    5353,
+ 				},
+ 				Tag: "dns-in",
+ 			})
+-- 
+2.20.1
+

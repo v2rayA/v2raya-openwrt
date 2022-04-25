@@ -1,0 +1,50 @@
+From db1253bc6f7892ad1e54171ef3ea375ed0cc92cd Mon Sep 17 00:00:00 2001
+From: mzz2017 <mzz@tuta.io>
+Date: Sun, 24 Apr 2022 18:49:43 +0800
+Subject: [PATCH 3/4] fix: resolv.LookupHost problem and non-A/AAAA/CNAME
+ problem in tproxy #188
+
+---
+ service/common/resolv/resolver.go | 2 +-
+ service/core/v2ray/v2rayTmpl.go   | 5 +++--
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/service/common/resolv/resolver.go b/service/common/resolv/resolver.go
+index 5cfaefc..5191a5e 100644
+--- a/service/common/resolv/resolver.go
++++ b/service/common/resolv/resolver.go
+@@ -26,7 +26,7 @@ func init() {
+ 	rand.Seed(time.Now().UnixNano())
+ 	dialer := net.Dialer{Timeout: 1000 * time.Millisecond}
+ 	DefaultResolver = &net.Resolver{
+-		PreferGo:     false,
++		PreferGo:     true,
+ 		StrictErrors: false,
+ 		Dial: func(ctx context.Context, network, address string) (net.Conn, error) {
+ 			server := dnsServers[rand.Intn(len(dnsServers))]
+diff --git a/service/core/v2ray/v2rayTmpl.go b/service/core/v2ray/v2rayTmpl.go
+index 92ecfbb..1bc6881 100644
+--- a/service/core/v2ray/v2rayTmpl.go
++++ b/service/core/v2ray/v2rayTmpl.go
+@@ -976,6 +976,8 @@ func (t *Template) appendDNSOutbound() {
+ 	t.Outbounds = append(t.Outbounds, coreObj.OutboundObject{
+ 		Tag:      "dns-out",
+ 		Protocol: "dns",
++		// Fallback DNS for non-A/AAAA/CNAME requests. https://github.com/v2rayA/v2rayA/issues/188
++		Settings: coreObj.Settings{Address: "119.29.29.29", Port: 53, Network: "udp"},
+ 	})
+ }
+ 
+@@ -1063,8 +1065,7 @@ func (t *Template) setInbound() error {
+ 				Listen:   "0.0.0.0",
+ 				Settings: &coreObj.InboundSettings{
+ 					Network: "udp",
+-					// Fallback DNS for non-A/AAAA/CNAME requests. https://github.com/v2rayA/v2rayA/issues/188
+-					Address: "119.29.29.29",
++					Address: "2.0.1.7",
+ 					Port:    53,
+ 				},
+ 				Tag: "dns-in",
+-- 
+2.20.1
+
