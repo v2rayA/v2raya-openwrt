@@ -70,14 +70,14 @@ jobs:
             runtime_test: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Build
-        uses: openwrt/gh-action-sdk@v3
+        uses: immortalwrt/gh-action-sdk@v4
         env:
-          ARCH: ${{ matrix.arch }}-openwrt-22.03
+          ARCH: ${{ matrix.arch }}-openwrt-21.02
           FEEDNAME: v2raya_ci
           PACKAGES: ca-certificates v2fly-geodata v2ray-core xray-core v2raya
           NO_REFRESH_CHECK: 1
@@ -106,7 +106,7 @@ jobs:
         run: cp bin/packages/${{ matrix.arch }}/v2raya_ci/*.ipk . || true
 
       - name: Store packages
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: github.event_name != 'release'
         with:
           name: ${{ matrix.arch }}-${{ github.sha }}-packages
@@ -123,7 +123,7 @@ jobs:
           file_glob: true
 
       - name: Store logs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.arch }}-${{ github.sha }}-logs
           path: logs/
@@ -141,7 +141,7 @@ jobs:
         run: |
           docker build -t test-container --build-arg ARCH .github/workflows/
         env:
-          ARCH: ${{ matrix.arch }}-openwrt-22.03
+          ARCH: ${{ matrix.arch }}-openwrt-21.02
 
       - name: Test via Docker container
         if: ${{ matrix.runtime_test }}
