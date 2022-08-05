@@ -12,18 +12,12 @@
 
    ```sh
    wget https://osdn.net/projects/v2raya/storage/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
-
-   # 国内镜像
-   # wget https://mirror.iscas.ac.cn/osdn/storage/g/v/v2/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
    ```
 
 2. 添加 v2rayA 软件源
 
    ```sh
    echo "src/gz v2raya https://osdn.net/projects/v2raya/storage/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
-
-   # 国内镜像
-   # echo "src/gz v2raya https://mirror.iscas.ac.cn/osdn/storage/g/v/v2/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
    ```
 
 3. 更新软件源
