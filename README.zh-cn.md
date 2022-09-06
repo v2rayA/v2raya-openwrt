@@ -1,6 +1,6 @@
 # v2raya-openwrt
 
-适用于 OpenWrt 用户的 opkg 软件源。
+适用于 OpenWrt 用户的 v2rayA opkg 软件源。
 
 [English](README.md)
 
@@ -8,7 +8,7 @@
 
 1. 导入 v2rayA 签名文件
 
-   > 请确认软件包 `wget-ssl` 已经安装在您的设备上
+   > 请确认软件包 `wget-ssl` 已经正确地安装在您的设备上
 
    ```sh
    wget https://osdn.net/projects/v2raya/storage/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
@@ -42,20 +42,31 @@
 
 ## 使用方法
 
-1. 配置 v2rayA
+- 方法一：通过 LuCI 界面配置（仅适用于 __OpenWrt 21.02 或更高版本__）
 
-   ```sh
-   # 详细配置请参见 /etc/config/v2raya
-   uci set v2raya.config.enabled='1'
-   uci commit v2raya
-   ```
+   1. 安装 LuCI app
+      ```sh
+      opkg install luci-app-v2raya
+      ```
 
-2. 启动 v2rayA
+   2. 访问 `http://<your_router_ip>/cgi-bin/luci/admin/services/v2raya` 并完成配置。
 
-   ```sh
-   /etc/init.d/v2raya start
-   ```
+- 方法二：通过命令行配置
 
-3. 访问 v2rayA webUI 面板并完成设置
+   1. 配置 v2rayA
 
-   http://openwrt.lan:2017
+      ```sh
+      # 详细配置请参见 /etc/config/v2raya
+      uci set v2raya.config.enabled='1'
+      uci commit v2raya
+      ```
+
+   2. 启动 v2rayA
+
+      ```sh
+      /etc/init.d/v2raya start
+      ```
+
+   3. 访问 v2rayA webUI 面板并完成设置
+
+      `http://<your_router_ip>:2017`

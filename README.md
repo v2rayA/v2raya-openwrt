@@ -42,20 +42,32 @@ opkg feed of v2rayA for OpenWrt users.
 
 ## How to use
 
-1. Setup v2rayA
+- Method 1 - Configure via LuCI interface (for __OpenWrt 21.02 and higher__ version only)
 
-   ```sh
-   # For advanced usage, please see /etc/config/v2raya
-   uci set v2raya.config.enabled='1'
-   uci commit v2raya
-   ```
+   1. Install LuCI app
 
-2. Start v2rayA
+      ```sh
+      opkg install luci-app-v2raya
+      ```
 
-   ```sh
-   /etc/init.d/v2raya start
-   ```
+   2. Visit `http://<your_router_ip>/cgi-bin/luci/admin/services/v2raya` and complete setup.
 
-3. Visit v2rayA webUI and enjoy
+- Method 2 - Configure via cli
 
-   http://openwrt.lan:2017
+   1. Setup v2rayA
+
+      ```sh
+      # For advanced usage, please see /etc/config/v2raya
+      uci set v2raya.config.enabled='1'
+      uci commit v2raya
+      ```
+
+   2. Start v2rayA
+
+      ```sh
+      /etc/init.d/v2raya start
+      ```
+
+   3. Visit v2rayA webUI and enjoy
+
+      `http://<your_router_ip>:2017`
