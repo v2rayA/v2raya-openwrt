@@ -79,7 +79,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}-openwrt-21.02
           FEEDNAME: v2raya_ci
-          PACKAGES: ca-certificates v2fly-geodata v2ray-core xray-core v2raya
+          PACKAGES: ca-certificates v2fly-geodata v2ray-core xray-core v2raya luci-app-v2raya
           NO_REFRESH_CHECK: 1
 
       - name: Generate metadata
