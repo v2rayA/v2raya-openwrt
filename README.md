@@ -33,8 +33,10 @@ opkg feed of v2rayA for OpenWrt users.
 
    # Choose a core you'd like to use, v2ray or Xray
    # If you have both installed, the former is preferred by default
-   opkg install v2ray-core
-   # opkg install xray-core
+   #
+   # Note from maintainer: due to broken tproxy support in v2ray, recommend using Xray instead
+   opkg install xray-core
+   # opkg install v2ray-core
 
    # Optional
    # opkg install v2fly-geoip v2fly-geosite

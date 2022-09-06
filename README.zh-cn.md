@@ -33,8 +33,10 @@
 
    # 选择一个你喜欢的内核，v2ray 或 Xray
    # 如果两个内核被同时安装，默认使用前者
-   opkg install v2ray-core
-   # opkg install xray-core
+   #
+   # 维护者注：由于目前 v2ray 的透明代理支持欠佳，因此更推荐使用 Xray
+   opkg install xray-core
+   # opkg install v2ray-core
 
    # 可选
    # opkg install v2fly-geoip v2fly-geosite
