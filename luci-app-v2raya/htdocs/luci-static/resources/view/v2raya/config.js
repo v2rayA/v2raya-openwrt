@@ -34,7 +34,7 @@ function renderStatus(isRunning, port) {
 	var spanTemp = '<span style="color:%s"><strong>%s %s</strong></span>';
 	var renderHTML;
 	if (isRunning) {
-		var button = String.format('&nbsp;<a class="btn cbi-button" href="%s:%s" target="_blank" rel="noreferrer noopener">%s</a>',
+		var button = String.format('&#160;<a class="btn cbi-button" href="%s:%s" target="_blank" rel="noreferrer noopener">%s</a>',
 			window.location.origin, port, _('Open Web Interface'));
 		renderHTML = spanTemp.format('green', _('v2rayA'), _('RUNNING')) + button;
 	} else {
@@ -44,7 +44,7 @@ function renderStatus(isRunning, port) {
 	return renderHTML;
 }
 
-function uploadCertificate(type, filename, ev) {
+function uploadCertificate(option, type, filename, ev) {
 	L.resolveDefault(fs.exec('/bin/mkdir', [ '-p', '/etc/v2raya/' ]));
 
 	return ui.uploadFile('/etc/v2raya/' + filename, ev.target)
@@ -57,11 +57,11 @@ function uploadCertificate(type, filename, ev) {
 		}
 
 		ui.addNotification(null, E('p', _('Your %s was successfully uploaded. Size: %sB.').format(type, res.size)));
-	}, this, ev.target))
+	}, option, ev.target))
 	.catch(function(e) { ui.addNotification(null, E('p', e.message)) })
 	.finally(L.bind(function(btn, input) {
 		btn.firstChild.data = _('Upload...');
-	}, this, ev.target));
+	}, option, ev.target));
 }
 
 return view.extend({
@@ -100,29 +100,9 @@ return view.extend({
 		o.rmempty = false;
 
 		o = s.option(form.Value, 'address', _('Listening address'));
+		o.datatype = 'ipaddrport(1)';
 		o.default = '0.0.0.0:2017';
-		o.validate = function(section_id, value) {
-			if (!section_id)
-				return true;
-			else if (!value)
-				return _('Expecting: %s').format('non-empty value');
-
-			var addr = value.split(':').slice(0, -1).join(':'),
-			    port = validation.parseInteger(value.split(':').slice(-1)[0]);
-
-			if (!addr || !port || port < 0 || port > 65535)
-				return _('Expecting: %s').format(_('valid address:port value'));
-			else if (!validation.parseIPv4(addr)) {
-				if (validation.parseIPv6(addr))
-					return _('IPv6 address should be used with [].')
-				else if (addr.match(/\[(.+)\]/) && validation.parseIPv6(RegExp.$1))
-					return true;
-				else
-					return _('Expecting: %s').format(_('valid address:port value'));
-			}
-
-			return true;
-		}
+		o.rmempty = false;
 
 		o = s.option(form.Value, 'config', _('Configuration directory'));
 		o.datatype = 'path';
@@ -183,13 +163,13 @@ return view.extend({
 		o = s.option(form.Button, '_upload_cert', _('Upload certificate'));
 		o.inputstyle = 'action';
 		o.inputtitle = _('Upload...');
-		o.onclick = L.bind(uploadCertificate, this, _('certificate'), 'grpc_certificate.crt');
+		o.onclick = L.bind(uploadCertificate, this, o, _('certificate'), 'grpc_certificate.crt');
 		o.depends('vless_grpc_inbound_cert_key', '/etc/v2raya/grpc_certificate.crt,/etc/v2raya/grpc_private.key');
 
 		o = s.option(form.Button, '_upload_key', _('Upload privateKey'));
 		o.inputstyle = 'action';
 		o.inputtitle = _('Upload...');
-		o.onclick = L.bind(uploadCertificate, this, _('private key'), 'grpc_private.key');
+		o.onclick = L.bind(uploadCertificate, this, o, _('private key'), 'grpc_private.key');
 		o.depends('vless_grpc_inbound_cert_key', '/etc/v2raya/grpc_certificate.crt,/etc/v2raya/grpc_private.key');
 
 		return m.render();
