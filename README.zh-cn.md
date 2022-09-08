@@ -48,7 +48,7 @@
 
    1. 安装 LuCI app
       ```sh
-      opkg install luci-app-v2raya
+      opkg install luci-app-v2raya luci-i18n-v2raya-zh-cn
       ```
 
    2. 访问 `http://<your_router_ip>/cgi-bin/luci/admin/services/v2raya` 并完成配置。
