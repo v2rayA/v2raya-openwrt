@@ -44,7 +44,7 @@ function renderStatus(isRunning, port) {
 	return renderHTML;
 }
 
-function uploadCertificate(option, type, filename, ev) {
+function uploadCertificate(type, filename, ev) {
 	L.resolveDefault(fs.exec('/bin/mkdir', [ '-p', '/etc/v2raya/' ]));
 
 	return ui.uploadFile('/etc/v2raya/' + filename, ev.target)
@@ -57,11 +57,11 @@ function uploadCertificate(option, type, filename, ev) {
 		}
 
 		ui.addNotification(null, E('p', _('Your %s was successfully uploaded. Size: %sB.').format(type, res.size)));
-	}, option, ev.target))
+	}, this, ev.target))
 	.catch(function(e) { ui.addNotification(null, E('p', e.message)) })
 	.finally(L.bind(function(btn, input) {
 		btn.firstChild.data = _('Upload...');
-	}, option, ev.target));
+	}, this, ev.target));
 }
 
 return view.extend({
@@ -163,13 +163,13 @@ return view.extend({
 		o = s.option(form.Button, '_upload_cert', _('Upload certificate'));
 		o.inputstyle = 'action';
 		o.inputtitle = _('Upload...');
-		o.onclick = L.bind(uploadCertificate, this, o, _('certificate'), 'grpc_certificate.crt');
+		o.onclick = L.bind(uploadCertificate, this, _('certificate'), 'grpc_certificate.crt');
 		o.depends('vless_grpc_inbound_cert_key', '/etc/v2raya/grpc_certificate.crt,/etc/v2raya/grpc_private.key');
 
 		o = s.option(form.Button, '_upload_key', _('Upload privateKey'));
 		o.inputstyle = 'action';
 		o.inputtitle = _('Upload...');
-		o.onclick = L.bind(uploadCertificate, this, o, _('private key'), 'grpc_private.key');
+		o.onclick = L.bind(uploadCertificate, this, _('private key'), 'grpc_private.key');
 		o.depends('vless_grpc_inbound_cert_key', '/etc/v2raya/grpc_certificate.crt,/etc/v2raya/grpc_private.key');
 
 		return m.render();
