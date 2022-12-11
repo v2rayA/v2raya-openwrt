@@ -44,7 +44,7 @@ define Package/v2raya2
     +iptables-mod-filter \
     +iptables-mod-tproxy \
     +kmod-ipt-nat6 \
-    +v2ray-v5-core
+    +v2ray-core
   CONFLICTS:=v2raya
   URL:=https://v2raya.org
 endef
