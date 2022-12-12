@@ -30,7 +30,7 @@ include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 TAR_OPTIONS+= --strip-components 1
 TAR_CMD=$(HOST_TAR) -C $(1)/.. $(TAR_OPTIONS)
 
-define Package/v2raya-v5
+define Package/v2raya2
   TITLE:=A Linux web GUI client of Project V
   SECTION:=net
   CATEGORY:=Network
@@ -49,12 +49,12 @@ define Package/v2raya-v5
   URL:=https://v2raya.org
 endef
 
-define Package/v2raya-v5/description
+define Package/v2raya2/description
   v2rayA is a V2Ray Linux client supporting global transparent proxy,
   compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols.
 endef
 
-define Package/v2raya-v5/conffiles
+define Package/v2raya2/conffiles
 /etc/v2raya/
 /etc/config/v2raya
 endef
@@ -78,7 +78,7 @@ define Build/Prepare
 	)
 endef
 
-define Package/v2raya-v5/install
+define Package/v2raya2/install
 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/v2rayA $(1)/usr/bin/v2raya
@@ -90,5 +90,5 @@ define Package/v2raya-v5/install
 endef
 
 $(eval $(call Download,v2raya-web))
-$(eval $(call GoBinPackage,v2raya-v5))
-$(eval $(call BuildPackage,v2raya-v5))
+$(eval $(call GoBinPackage,v2raya2))
+$(eval $(call BuildPackage,v2raya2))
