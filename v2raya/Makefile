@@ -41,7 +41,8 @@ define Package/v2raya
     +iptables-mod-extra \
     +iptables-mod-filter \
     +iptables-mod-tproxy \
-    +kmod-ipt-nat6
+    +kmod-ipt-nat6 \
+    +xray-core
   URL:=https://v2raya.org
 endef
 
