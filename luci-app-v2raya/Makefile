@@ -5,7 +5,6 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for v2rayA
-LUCI_DEPENDS:=+v2raya
 LUCI_PKGARCH:=all
 PKG_VERSION:=$(COMMITCOUNT)
 
