@@ -93,7 +93,7 @@ jobs:
           ./scripts/generate_index.sh
 
       - name: Upload feed
-        uses: Pendect/action-rsyncer@2554a1e574cf229fb144f23ea5971dbdca8ae8e3
+        uses: Pendect/action-rsyncer@8e05ffa5c93e5d9c9b167796b26044d2c616b2b9
         with:
           flags: '-ahvHP'
           options: '--delete'
@@ -113,7 +113,7 @@ jobs:
           path: "*.ipk"
 
       - name: Release packages
-        uses: floralatin/upload-release-action@9738db02560c333bf629a1533bd86ceda138e599
+        uses: floralatin/upload-release-action@3688e13ae053ba3052eb4f0cfe03e78deb8f88d7
         if: github.event_name == 'release'
         with:
           overwrite: true
