@@ -15,9 +15,12 @@ for PKG in /ci/*.ipk; do
 	# package source contianing test.sh script
 	PKG_SOURCE=$(sed -ne 's#^Source: .*/\(.*\)$#\1#p' ./control)
 
-	if [ "$PKG_NAME" = "ca-certificates" ] || [ "$PKG_NAME" = "ca-bundle" ]; then
+	case "$PKG_NAME" in
+	"ca-certificates"|"ca-bundle"|\
+	"luci-app-v2raya"|"luci-i18n-v2raya"-*)
 		continue
-	fi
+		;;
+	esac
 
 	echo "Testing package $PKG_NAME in version $PKG_VERSION from $PKG_SOURCE"
 
