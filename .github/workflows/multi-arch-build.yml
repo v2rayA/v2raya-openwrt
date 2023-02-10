@@ -77,7 +77,7 @@ jobs:
       - name: Build
         uses: immortalwrt/gh-action-sdk@v4.1
         env:
-          ARCH: ${{ matrix.arch }}-openwrt-21.02
+          ARCH: ${{ matrix.arch }}
           FEEDNAME: v2raya_ci
           PACKAGES: ca-certificates v2fly-geodata v2ray-core xray-core v2raya v2raya2 luci-app-v2raya
           NO_REFRESH_CHECK: 1
@@ -141,7 +141,7 @@ jobs:
         run: |
           docker build -t test-container --build-arg ARCH .github/workflows/
         env:
-          ARCH: ${{ matrix.arch }}-openwrt-21.02
+          ARCH: ${{ matrix.arch }}
 
       - name: Test via Docker container
         if: ${{ matrix.runtime_test }}
