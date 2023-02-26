@@ -35,7 +35,7 @@ function renderStatus(isRunning, port) {
 	var renderHTML;
 	if (isRunning) {
 		var button = String.format('&#160;<a class="btn cbi-button" href="%s:%s" target="_blank" rel="noreferrer noopener">%s</a>',
-			window.location.origin, port, _('Open Web Interface'));
+			window.location.hostname, port, _('Open Web Interface'));
 		renderHTML = spanTemp.format('green', _('v2rayA'), _('RUNNING')) + button;
 	} else {
 		renderHTML = spanTemp.format('red', _('v2rayA'), _('NOT RUNNING'));
