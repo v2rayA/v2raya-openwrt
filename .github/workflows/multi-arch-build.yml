@@ -113,7 +113,7 @@ jobs:
           path: "*.ipk"
 
       - name: Release packages
-        uses: floralatin/upload-release-action@3688e13ae053ba3052eb4f0cfe03e78deb8f88d7
+        uses: svenstaro/upload-release-action@7319e4733ec7a184d739a6f412c40ffc339b69c7
         if: github.event_name == 'release'
         with:
           overwrite: true
