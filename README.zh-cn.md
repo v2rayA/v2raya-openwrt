@@ -36,8 +36,20 @@
    ```sh
    opkg install v2raya
 
+   # 检查你的防火墙实现
+   # 为基于 nftables 的 firewall4 (command -v fw4) 安装下列软件包
+   # 一般来说，在 OpenWrt 22.03 或更新版本中安装它们
+   opkg install kmod-nft-tproxy
+   # 为基于 iptables 的 firewall3 (command -v fw3) 安装下列软件包
+   # 一般来说，在 OpenWrt 21.02 或更早版本中安装它们
+   opkg install iptables-mod-conntrack-extra \
+     iptables-mod-extra \
+     iptables-mod-filter \
+     iptables-mod-tproxy \
+     kmod-ipt-nat6
+
    # 选择一个你喜欢的内核，v2ray 或 Xray
-   # 如果两个内核被同时安装，默认使用前者
+   # 如果两个内核被同时安装，默认使用后者
    #
    # 维护者注：由于目前 v2ray 的透明代理支持欠佳，因此更推荐使用 Xray
    opkg install xray-core

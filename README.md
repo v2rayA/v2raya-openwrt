@@ -36,8 +36,20 @@ opkg feed of v2rayA for OpenWrt users.
    ```sh
    opkg install v2raya
 
+   # Check your firewall implementation
+   # Install the following packages for the nftables-based firewall4 (command -v fw4)
+   # Generally speaking, install them on OpenWrt 22.03 and later
+   opkg install kmod-nft-tproxy
+   # Install the following packages for the iptables-based firewall3 (command -v fw3)
+   # Generally speaking, install them on OpenWrt 21.02 and earlier
+   opkg install iptables-mod-conntrack-extra \
+     iptables-mod-extra \
+     iptables-mod-filter \
+     iptables-mod-tproxy \
+     kmod-ipt-nat6
+
    # Choose a core you'd like to use, v2ray or Xray
-   # If you have both installed, the former is preferred by default
+   # If you have both installed, the latter is preferred by default
    #
    # Note from maintainer: due to broken tproxy support in v2ray, recommend using Xray instead
    opkg install xray-core
