@@ -59,6 +59,8 @@ define Download/v2raya-web
 	HASH:=39eacb70753b309a0f44ede282ad01b5c6a13d51bed72d0f5563574de9bea0b7
 endef
 
+GO_PKG_TARGET_VARS:=$(filter-out CGO_ENABLED=%,$(GO_PKG_TARGET_VARS)) CGO_ENABLED=0
+
 define Build/Prepare
 	$(call Build/Prepare/Default)
 
