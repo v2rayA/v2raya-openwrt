@@ -75,7 +75,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build
-        uses: immortalwrt/gh-action-sdk@v4.1
+        uses: immortalwrt/gh-action-sdk@v4
         env:
           ARCH: ${{ matrix.arch }}
           FEEDNAME: v2raya_ci
