@@ -11,13 +11,13 @@
    > 请确认软件包 `wget-ssl` 或 `libustream` 已经正确地安装在您的设备上
 
    ```sh
-   wget https://downloads.sourceforge.net/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
+   wget https://downloads.sourceforge.net/project/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
    ```
 
 2. 添加 v2rayA 软件源
 
    ```sh
-   echo "src/gz v2raya https://downloads.sourceforge.net/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
+   echo "src/gz v2raya https://downloads.sourceforge.net/project/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
    ```
 
 3. 更新软件源
