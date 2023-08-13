@@ -15,11 +15,11 @@ jobs:
       matrix:
         include:
           - arch: aarch64_cortex-a53
-            runtime_test: true
+            runtime_test: false
           - arch: aarch64_cortex-a72
             runtime_test: false
           - arch: aarch64_generic
-            runtime_test: false
+            runtime_test: true
           - arch: arm_arm1176jzf-s_vfp
             runtime_test: false
           - arch: arm_arm926ej-s
@@ -65,6 +65,8 @@ jobs:
           - arch: mipsel_74kc
             runtime_test: false
           - arch: mipsel_mips32
+            runtime_test: false
+          - arch: riscv64_riscv64
             runtime_test: false
           - arch: x86_64
             runtime_test: true
