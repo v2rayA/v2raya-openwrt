@@ -8,21 +8,16 @@
 
 1. 导入 v2rayA 签名文件
 
-   > 请确认软件包 `wget-ssl` 已经正确地安装在您的设备上
+   > 请确认软件包 `wget-ssl` 或 `libustream` 已经正确地安装在您的设备上
 
    ```sh
-   wget https://osdn.net/projects/v2raya/storage/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
+   wget https://downloads.sourceforge.net/v2raya/openwrt/v2raya.pub -O /etc/opkg/keys/94cc2a834fb0aa03
    ```
 
 2. 添加 v2rayA 软件源
 
    ```sh
-   echo "src/gz v2raya https://osdn.net/projects/v2raya/storage/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
-
-   # 日本镜像
-   # echo "src/gz v2raya https://ftp.jaist.ac.jp/pub/sourceforge.jp/storage/g/v/v2/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
-   # 美国镜像
-   # echo "src/gz v2raya https://mirrors.gigenet.com/OSDN/storage/g/v/v2/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
+   echo "src/gz v2raya https://downloads.sourceforge.net/v2raya/openwrt/$(. /etc/openwrt_release && echo "$DISTRIB_ARCH")" | tee -a "/etc/opkg/customfeeds.conf"
    ```
 
 3. 更新软件源
