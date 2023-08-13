@@ -98,9 +98,9 @@ jobs:
           flags: '-ahvHP'
           options: '--delete'
           src: 'bin/packages/${{ matrix.arch }}/v2raya_ci/'
-          dest: '${{ secrets.OSDN_USER }}@storage.osdn.net:/storage/groups/v/v2/v2raya/openwrt/${{ matrix.arch }}/'
+          dest: '${{ secrets.SF_USER }}@frs.sourceforge.net:/home/frs/project/v2raya/openwrt/${{ matrix.arch }}/'
         env:
-          DEPLOY_KEY: ${{ secrets.OSDN_KEY }}
+          DEPLOY_KEY: ${{ secrets.SF_KEY }}
 
       - name: Move created packages to project dir
         run: cp bin/packages/${{ matrix.arch }}/v2raya_ci/*.ipk . || true
