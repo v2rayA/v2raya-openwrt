@@ -79,7 +79,7 @@ jobs:
       - name: Build
         uses: immortalwrt/gh-action-sdk@v4
         env:
-          ARCH: ${{ matrix.arch }}
+          ARCH: ${{ matrix.arch }}-openwrt-23.05
           FEEDNAME: v2raya_ci
           PACKAGES: ca-certificates v2fly-geodata v2ray-core xray-core v2raya luci-app-v2raya
           NO_REFRESH_CHECK: 1
@@ -115,7 +115,7 @@ jobs:
           path: "*.ipk"
 
       - name: Release packages
-        uses: svenstaro/upload-release-action@7319e4733ec7a184d739a6f412c40ffc339b69c7
+        uses: svenstaro/upload-release-action@v2
         if: github.event_name == 'release'
         with:
           overwrite: true
@@ -143,7 +143,7 @@ jobs:
         run: |
           docker build -t test-container --build-arg ARCH .github/workflows/
         env:
-          ARCH: ${{ matrix.arch }}
+          ARCH: ${{ matrix.arch }}-openwrt-23.05
 
       - name: Test via Docker container
         if: ${{ matrix.runtime_test }}
