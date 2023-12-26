@@ -72,30 +72,22 @@ jobs:
             runtime_test: true
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Build
-        uses: immortalwrt/gh-action-sdk@v4
+        uses: immortalwrt/gh-action-sdk@v5
         env:
           ARCH: ${{ matrix.arch }}
           FEEDNAME: v2raya_ci
           PACKAGES: ca-certificates v2fly-geodata v2ray-core xray-core v2raya luci-app-v2raya
           NO_REFRESH_CHECK: 1
-
-      - name: Generate metadata
-        env:
-          BUILD_ARCH: ${{ matrix.arch }}
-          DEBIAN_FRONTEND: noninteractive
-          USIGN_KEY: ${{ secrets.USIGN_KEY }}
-        run: |
-          sudo -H apt -qq install signify-openbsd
-          sudo -H chown -R runner:runner bin
-          ./scripts/generate_index.sh
+          INDEX: 1
+          KEY_BUILD: ${{ secrets.USIGN_KEY }}
 
       - name: Upload feed
-        uses: Pendect/action-rsyncer@8e05ffa5c93e5d9c9b167796b26044d2c616b2b9
+        uses: Pendect/action-rsyncer@9738db02560c333bf629a1533bd86ceda138e599
         with:
           flags: '-ahvHP'
           options: '--delete'
@@ -115,7 +107,7 @@ jobs:
           path: "*.ipk"
 
       - name: Release packages
-        uses: svenstaro/upload-release-action@7319e4733ec7a184d739a6f412c40ffc339b69c7
+        uses: svenstaro/upload-release-action@v2
         if: github.event_name == 'release'
         with:
           overwrite: true
