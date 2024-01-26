@@ -1,8 +1,3 @@
-/* SPDX-License-Identifier: GPL-3.0-only
- *
- * Copyright (C) 2022 ImmortalWrt.org
- */
-
 'use strict';
 'require dom';
 'require fs';
@@ -30,12 +25,12 @@ return view.extend({
 		var log_textarea = E('div', { 'id': 'log_textarea' },
 			E('img', {
 				'src': L.resource(['icons/loading.gif']),
-				'alt': _('Loading...'),
+				'alt': _('Loading…'),
 				'style': 'vertical-align:middle'
-			}, _('Collecting data...'))
+			}, _('Collecting data…'))
 		);
 
-		var log_path = uci.get('v2raya', 'config', 'log_file') || '/var/log/v2raya/v2raya.log';
+		var log_path = '/var/log/v2raya/v2raya.log';
 
 		poll.add(L.bind(function() {
 			return fs.read_direct(log_path, 'text')
@@ -67,7 +62,7 @@ return view.extend({
 				E('div', {'class': 'cbi-section'}, [
 					log_textarea,
 					E('div', {'style': 'text-align:right'},
-					E('small', {}, _('Refresh every %s seconds.').format(L.env.pollinterval))
+					E('small', {}, _('Refresh every %d seconds.').format(L.env.pollinterval))
 					)
 				])
 			])
