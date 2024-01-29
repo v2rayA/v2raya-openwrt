@@ -100,7 +100,7 @@ jobs:
         run: cp bin/packages/${{ matrix.arch }}/v2raya_ci/*.ipk . || true
 
       - name: Store packages
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: github.event_name != 'release'
         with:
           name: ${{ matrix.arch }}-${{ github.sha }}-packages
@@ -117,7 +117,7 @@ jobs:
           file_glob: true
 
       - name: Store logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.arch }}-${{ github.sha }}-logs
           path: logs/
