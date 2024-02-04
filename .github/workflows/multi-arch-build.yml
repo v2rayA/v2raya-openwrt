@@ -107,16 +107,6 @@ jobs:
           name: ${{ matrix.arch }}-${{ github.sha }}-packages
           path: "*.ipk"
 
-      - name: Release packages
-        uses: svenstaro/upload-release-action@v2
-        if: github.event_name == 'release'
-        with:
-          overwrite: true
-          repo_token: ${{ github.token }}
-          tag: ${{ github.ref }}
-          file: "*.ipk"
-          file_glob: true
-
       - name: Store logs
         uses: actions/upload-artifact@v4
         with:
