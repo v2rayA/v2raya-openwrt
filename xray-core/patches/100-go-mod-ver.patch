@@ -4,7 +4,7 @@
  module github.com/xtls/xray-core
  
 -go 1.22
-+go 1.21.7
++go 1.21.9
  
  require (
- 	github.com/ghodss/yaml v1.0.1-0.20220118164431-d8423dcdf344
+ 	github.com/OmarTariq612/goech v0.0.0-20240405204721-8e2e1dafd3a0
