@@ -7,7 +7,7 @@ set -o nounset # undefined variables causes script to fail
 echo "src/gz packages_ci file:///ci" >> /etc/opkg/distfeeds.conf
 
 FINGERPRINT="$(usign -F -p /ci/packages_ci.pub)"
-cp /ci/packages_ci.pub "/etc/opkg/keys/$FINGERPRINT"
+cp /ci/v2raya.pub "/etc/opkg/keys/$FINGERPRINT"
 
 mkdir -p /var/lock/
 
