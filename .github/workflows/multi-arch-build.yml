@@ -94,6 +94,7 @@ jobs:
           NO_REFRESH_CHECK: 1
           INDEX: 1
           KEY_BUILD: ${{ secrets.USIGN_KEY }}
+          V: s
 
       - name: Upload feed
         uses: Pendect/action-rsyncer@9738db02560c333bf629a1533bd86ceda138e599
@@ -106,14 +107,17 @@ jobs:
           DEPLOY_KEY: ${{ secrets.SF_KEY }}
 
       - name: Move created packages to project dir
-        run: cp bin/packages/${{ matrix.arch }}/v2raya_ci/*.ipk . || true
+        run: cp bin/packages/${{ matrix.arch }}/v2raya_ci/* . || true
 
       - name: Store packages
         uses: actions/upload-artifact@v4
         if: github.event_name != 'release'
         with:
           name: ${{ matrix.arch }}-${{ github.sha }}-packages
-          path: "*.ipk"
+          path: |
+            Packages
+            Packages.*
+            *.ipk
 
       - name: Store logs
         uses: actions/upload-artifact@v4
