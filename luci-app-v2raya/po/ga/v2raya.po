@@ -1,16 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: luci-app-v 2raya\n"
-"PO-Revision-Date: 2024-07-08 22:10+0000\n"
-"Last-Translator: Milan <cirhanmilan@seznam.cz>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/openwrt/"
-"luciapplicationsv2raya/cs/>\n"
-"Language: cs\n"
-"MIME-Version: 1.0\n"
+"PO-Revision-Date: 2024-09-07 19:01+0000\n"
+"Last-Translator: Aindriú Mac Giolla Eoin <aindriu80@gmail.com>\n"
+"Language-Team: Irish <https://hosted.weblate.org/projects/openwrt/"
+"luciapplicationsv2raya/ga/>\n"
+"Language: ga\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :("
+"n>6 && n<11) ? 3 : 4;\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:79
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:86
@@ -20,135 +19,138 @@ msgstr "Auto"
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:64
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/log.js:30
 msgid "Collecting data…"
-msgstr ""
+msgstr "Sonraí á mbailiú…"
 
 #: applications/luci-app-v2raya/root/usr/share/luci/menu.d/luci-app-v2raya.json:13
 msgid "Configuration"
-msgstr ""
+msgstr "Cumraíocht"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:93
 msgid "Debug"
-msgstr ""
+msgstr "Dífhabhtaithe"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:104
 msgid "Disable log color output"
-msgstr ""
+msgstr "Díchumasaigh aschur dath an loga"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:106
 msgid "Disable log timestamp"
-msgstr ""
+msgstr "Díchumasaigh stampa ama loga"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:70
 msgid "Enable"
-msgstr ""
+msgstr "Cumasaigh"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:96
 msgid "Error"
-msgstr ""
+msgstr "Earráid"
 
 #: applications/luci-app-v2raya/root/usr/share/rpcd/acl.d/luci-app-v2raya.json:3
 msgid "Grant access to v2rayA configuration"
-msgstr ""
+msgstr "Deonaigh rochtain ar chumraíocht v2rayA"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:77
 msgid "IPv6 support"
-msgstr ""
+msgstr "Tacaíocht IPv6"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:94
 msgid "Info"
-msgstr ""
+msgstr "Faisnéis"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:73
 msgid "Listening address"
-msgstr ""
+msgstr "Seoladh éisteachta"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/log.js:28
 msgid "Loading…"
-msgstr ""
+msgstr "Á lódáil…"
 
 #: applications/luci-app-v2raya/root/usr/share/luci/menu.d/luci-app-v2raya.json:21
 msgid "Log"
-msgstr ""
+msgstr "Loga"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/log.js:48
 msgid "Log file does not exist."
-msgstr ""
+msgstr "Níl logchomhad ann."
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/log.js:39
 msgid "Log is clean."
-msgstr ""
+msgstr "Tá an logáil glan."
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:91
 msgid "Log level"
-msgstr ""
+msgstr "Leibhéal logála"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:99
 msgid "Max log retention period"
-msgstr ""
+msgstr "Uastréimhse coinneála loga"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:33
 msgid "NOT RUNNING"
-msgstr ""
+msgstr "NÍ RÚCHÁN"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:84
 msgid "Nftables support"
-msgstr ""
+msgstr "Tacaíocht nftables"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:81
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:88
 msgid "Off"
-msgstr ""
+msgstr "As"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:80
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:87
 msgid "On"
-msgstr ""
+msgstr "Ar"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:30
 msgid "Open Web Interface"
-msgstr ""
+msgstr "Comhéadan Gréasáin Oscailte"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:31
 msgid "RUNNING"
-msgstr ""
+msgstr "REATHA"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/log.js:65
 msgid "Refresh every %d seconds."
-msgstr ""
+msgstr "Athnuaigh gach %d soicind."
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:85
 msgid "Requires nftables."
-msgstr ""
+msgstr "Éilíonn nftables."
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:78
 msgid "Requires working IPv6 connectivity."
-msgstr ""
+msgstr "Tá nascacht IPv6 oibre de dhíth."
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:92
 msgid "Trace"
-msgstr ""
+msgstr "Rian"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:100
 msgid "Unit: days."
-msgstr ""
+msgstr "Aonad: laethanta."
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/log.js:52
 msgid "Unknown error: %s"
-msgstr ""
+msgstr "Earráid anaithnid: %s"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:95
 msgid "Warn"
-msgstr ""
+msgstr "Rabhadh"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:31
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:33
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:50
 #: applications/luci-app-v2raya/root/usr/share/luci/menu.d/luci-app-v2raya.json:3
 msgid "v2rayA"
-msgstr ""
+msgstr "v2rayA"
 
 #: applications/luci-app-v2raya/htdocs/luci-static/resources/view/v2raya/config.js:51
 msgid ""
 "v2rayA is a V2Ray Linux client supporting global transparent proxy, "
 "compatible with SS, SSR, Trojan(trojan-go), PingTunnel protocols."
 msgstr ""
+"Is cliant V2Ray Linux é v2rayA a thacaíonn le seachfhreastalaí trédhearcach "
+"domhanda, atá comhoiriúnach le prótacail SS, SSR, Trojan(trojan-go), "
+"PingTunnel."
