@@ -19,6 +19,8 @@ jobs:
             runtime_test: false
           - arch: aarch64_cortex-a72
             runtime_test: false
+          - arch: aarch64_cortex-a76
+            runtime_test: false
           - arch: aarch64_generic
             runtime_test: true
           - arch: arm_arm1176jzf-s_vfp
@@ -51,7 +53,13 @@ jobs:
             runtime_test: true
           - arch: i386_pentium4
             runtime_test: false
+          - arch: loongarch64_generic
+            runtime_test: false
+          - arch: mips64_mips64r2
+            runtime_test: false
           - arch: mips64_octeonplus
+            runtime_test: false
+          - arch: mips64el_mips64r2
             runtime_test: false
           - arch: mips_24kc
             runtime_test: true
