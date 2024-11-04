@@ -4,9 +4,9 @@
 set -o errexit # failing commands causes script to fail
 set -o nounset # undefined variables causes script to fail
 
-echo "src/gz packages_ci file:///ci" >> /etc/opkg/distfeeds.conf
+echo "src/gz v2raya file:///ci" >> /etc/opkg/distfeeds.conf
 
-FINGERPRINT="$(usign -F -p /ci/packages_ci.pub)"
+FINGERPRINT="$(usign -F -p /ci/v2raya.pub)"
 cp /ci/v2raya.pub "/etc/opkg/keys/$FINGERPRINT"
 
 mkdir -p /var/lock/
