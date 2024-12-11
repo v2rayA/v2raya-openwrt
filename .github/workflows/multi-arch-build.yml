@@ -45,8 +45,6 @@ jobs:
             runtime_test: false
           - arch: arm_fa526
             runtime_test: false
-          - arch: arm_mpcore
-            runtime_test: false
           - arch: arm_xscale
             runtime_test: false
           - arch: i386_pentium-mmx
