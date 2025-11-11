@@ -10,7 +10,7 @@ function update_geodata() {
 	local res="$3"
 	local tag ver sha line
 
-	tag="$(curl -H "Authorization: Bearer $GITHUB_TOKEN" -sL "https://api.github.com/repos/$repo/releases/latest" | jq -r ".tag_name")"
+	tag="$(gh api "repos/$repo/releases/latest" | jq -r ".tag_name")"
 	[ -n "$tag" ] || return 1
 
 	ver="$(awk -F "${type}_VER:=" '{print $2}' "$CURDIR/Makefile" | xargs)"
