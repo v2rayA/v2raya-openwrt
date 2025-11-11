@@ -79,12 +79,12 @@ jobs:
             runtime_test: true
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Build
-        uses: immortalwrt/gh-action-sdk@v6
+        uses: immortalwrt/gh-action-sdk@v7
         env:
           ARCH: ${{ matrix.arch }}-openwrt-24.10
           FEEDNAME: v2raya_ci
@@ -108,7 +108,7 @@ jobs:
         run: cp bin/packages/${{ matrix.arch }}/v2raya_ci/* . || true
 
       - name: Store packages
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: github.event_name != 'release'
         with:
           name: ${{ matrix.arch }}-${{ github.sha }}-packages
@@ -118,7 +118,7 @@ jobs:
             *.ipk
 
       - name: Store logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.arch }}-${{ github.sha }}-logs
           path: logs/
