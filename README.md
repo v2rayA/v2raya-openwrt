@@ -4,7 +4,14 @@ opkg feed of v2rayA for OpenWrt users.
 
 [简体中文](README.zh-cn.md)
 
-## How to install
+## Current v2rayA sources on OpenWrt 24.10
+
+Current v2rayA requires its matching `v2raya_core`. See the [source-build
+pipeline](tools/README.md) for ARM64 packages containing the current service,
+matching core and LuCI, including dependencies and signed-feed publication.
+The historical feed and SDK recipe below target v2.2.x.
+
+## How to install the legacy feed
 
 1. Add v2rayA usign key
 

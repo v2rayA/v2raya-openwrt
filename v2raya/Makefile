@@ -22,6 +22,8 @@ PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=github.com/v2rayA/v2rayA
+# Required by the v2.2.7.4 sources pinned above. Current sources use the
+# runtime OpenWrt interface defaults instead; do not copy this flag there.
 GO_PKG_LDFLAGS_X:= \
 	$(GO_PKG)/conf.Version=$(PKG_VERSION) \
 	$(GO_PKG)/core/iptables.TproxyNotSkipBr=true
