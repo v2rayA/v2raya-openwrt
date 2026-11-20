@@ -88,7 +88,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}-openwrt-24.10
           FEEDNAME: v2raya_ci
-          PACKAGES: ca-certificates v2fly-geodata v2ray-core xray-core v2raya luci-app-v2raya
+          PACKAGES: ca-certificates v2fly-geodata v2raya-core v2raya luci-app-v2raya
           NO_REFRESH_CHECK: 1
           INDEX: 1
           KEY_BUILD: ${{ secrets.USIGN_KEY }}
